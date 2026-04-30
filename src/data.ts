@@ -3,6 +3,7 @@ export type Lang = 'en' | 'ru'
 export const person = {
   name: 'Arseniy Abramidze',
   email: 'zowel.aep@gmail.com',
+  telegram: 'https://t.me/zowelqqe',
   linkedin: 'https://linkedin.com/in/arseniy-abramidze-14946727b',
   github: 'https://github.com/zowelqqee',
   location: { en: 'Saint Petersburg · office / hybrid', ru: 'Санкт-Петербург · офис / гибрид' },

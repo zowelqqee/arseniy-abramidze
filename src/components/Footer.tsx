@@ -6,8 +6,11 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-sm text-neutral-400">
         <span>{person.name}</span>
         <div className="flex gap-5">
+          <a href={person.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">
+            Telegram
+          </a>
           <a href={`mailto:${person.email}`} className="hover:text-indigo-600 transition-colors">
-            Email
+            {person.email}
           </a>
           <a href={person.github} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">
             GitHub
