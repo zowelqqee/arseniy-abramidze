@@ -20,6 +20,9 @@ export default function Nav() {
           <a href="#skills" className="hidden sm:block hover:text-neutral-900 transition-colors">
             {t(ui.nav.skills, lang)}
           </a>
+          <a href="#additional" className="hidden sm:block hover:text-neutral-900 transition-colors">
+            {t(ui.nav.additional, lang)}
+          </a>
 
           <button
             onClick={toggle}

@@ -4,6 +4,7 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Education from './components/Education'
+import Additional from './components/Additional'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 
@@ -17,6 +18,7 @@ export default function App() {
         <Experience />
         <Skills />
         <Education />
+        <Additional />
         <CTA />
       </main>
       <Footer />

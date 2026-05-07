@@ -78,6 +78,8 @@ function ImageSlot({ src, color, name }: { src: string; color: Color; name: stri
 
 function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: string }; lang: 'en' | 'ru' }) {
   const c = colorMap[p.color]
+  const highlights = 'highlights' in p ? p.highlights?.[lang] : undefined
+
   return (
     <div className={`flex flex-col rounded-xl border bg-white overflow-hidden transition-colors ${c.border}`}>
       <div className="h-52 shrink-0">
@@ -86,7 +88,10 @@ function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: str
       <div className="flex flex-col flex-1 p-6">
         <div className="mb-4 flex items-start gap-3">
           <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${c.accent}`} />
-          <div>
+          <div className="flex-1">
+            {'period' in p && p.period && (
+              <span className="float-right ml-4 text-xs text-neutral-400 tabular-nums">{p.period}</span>
+            )}
             <span className={`text-xs font-semibold uppercase tracking-widest ${c.label}`}>
               {t(p.tagline, lang)}
             </span>
@@ -94,6 +99,16 @@ function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: str
           </div>
         </div>
         <p className="text-sm text-neutral-500 leading-relaxed flex-1">{t(p.description, lang)}</p>
+        {highlights && (
+          <ul className="mt-4 flex flex-col gap-2">
+            {highlights.map((point) => (
+              <li key={point} className="flex gap-2.5 text-sm text-neutral-500 leading-relaxed">
+                <span className="mt-2 w-1 h-1 rounded-full bg-neutral-300 shrink-0" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="mt-5 flex flex-wrap gap-1.5">
           {p.stack.map((s) => (
             <span key={s} className={`px-2 py-0.5 text-xs font-medium rounded border ${c.tag}`}>
@@ -108,11 +123,16 @@ function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: str
 
 function CompactCard({ p, lang }: { p: (typeof projects)[number]; lang: 'en' | 'ru' }) {
   const c = colorMap[p.color]
+  const highlights = 'highlights' in p ? p.highlights?.[lang] : undefined
+
   return (
     <div className={`flex flex-col p-6 rounded-xl border bg-white transition-colors ${c.border}`}>
       <div className="mb-4 flex items-start gap-3">
         <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${c.accent}`} />
-        <div>
+        <div className="flex-1">
+          {'period' in p && p.period && (
+            <span className="float-right ml-4 text-xs text-neutral-400 tabular-nums">{p.period}</span>
+          )}
           <span className={`text-xs font-semibold uppercase tracking-widest ${c.label}`}>
             {t(p.tagline, lang)}
           </span>
@@ -120,6 +140,16 @@ function CompactCard({ p, lang }: { p: (typeof projects)[number]; lang: 'en' | '
         </div>
       </div>
       <p className="text-sm text-neutral-500 leading-relaxed flex-1">{t(p.description, lang)}</p>
+      {highlights && (
+        <ul className="mt-4 flex flex-col gap-2">
+          {highlights.map((point) => (
+            <li key={point} className="flex gap-2.5 text-sm text-neutral-500 leading-relaxed">
+              <span className="mt-2 w-1 h-1 rounded-full bg-neutral-300 shrink-0" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      )}
       <div className="mt-5 flex flex-wrap gap-1.5">
         {p.stack.map((s) => (
           <span key={s} className={`px-2 py-0.5 text-xs font-medium rounded border ${c.tag}`}>
@@ -145,14 +175,12 @@ export default function Projects() {
       </h2>
 
       <div className="flex flex-col gap-5">
-        {/* Featured cards — with image slot */}
         <div className="grid sm:grid-cols-2 gap-5">
           {featured.map((p) => (
             <FeaturedCard key={p.name} p={p} lang={lang} />
           ))}
         </div>
 
-        {/* Compact cards — no image */}
         {compact.length > 0 && (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {compact.map((p) => (
