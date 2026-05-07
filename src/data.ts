@@ -41,6 +41,28 @@ export const projects = [
     },
   },
   {
+    name: 'DataPulse',
+    tagline: { en: 'AI Analytics Product', ru: 'AI-продукт для аналитики' },
+    period: '2025 — present',
+    stack: ['Python', 'Pandas', 'OpenAI API', 'Excel / Google Sheets'],
+    color: 'violet' as const,
+    image: '/images/datapulse_image.png' as string,
+    description: {
+      en: 'AI analytics product for e-commerce and retail with paying customers. Turns raw Excel and Google Sheets data into decision-ready AI reports with executive summaries, anomalies, risks, demand patterns, and SKU-level insights.',
+      ru: 'AI-продукт аналитики для e-commerce и ритейла с платящими клиентами. Превращает сырые данные из Excel и Google Sheets в готовые AI-отчеты с executive summary, аномалиями, рисками, паттернами спроса и SKU-level insights.',
+    },
+    highlights: {
+      en: [
+        'Automated SKU-level anomaly detection and data quality control',
+        'Reduced report preparation time from hours to about 30 seconds',
+      ],
+      ru: [
+        'Автоматизировал SKU-level anomaly detection и контроль качества данных',
+        'Сократил подготовку отчетов с нескольких часов примерно до 30 секунд',
+      ],
+    },
+  },
+  {
     name: 'ARIA',
     tagline: { en: 'AR Assistant', ru: 'AR-ассистент' },
     period: '2026 — present',
