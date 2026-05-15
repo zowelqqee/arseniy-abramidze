@@ -25,6 +25,13 @@ export const projects = [
     stack: ['Python', 'Google Gemini Live API', 'scikit-learn', 'FastAPI', 'MLflow'],
     color: 'indigo' as const,
     image: '/images/jarvis_image.png' as string,
+    links: [
+      {
+        label: { en: 'Watch demo', ru: 'Смотреть демо' },
+        href: 'https://www.youtube.com/watch?v=FD00PptEfeI',
+        type: 'video' as const,
+      },
+    ],
     description: {
       en: 'Real-time voice AI assistant for system control, browser automation, file management, and workflow execution. Combines a production intent-classification API, MLflow experiment tracking, confidence-drift monitoring, and a deterministic Parser → Validator → Planner → Executor pipeline.',
       ru: 'Голосовой AI-ассистент в реальном времени для управления системой, браузерной автоматизации, работы с файлами и выполнения workflow. Объединяет production API для intent classification, трекинг экспериментов в MLflow, мониторинг дрифта уверенности и детерминированный пайплайн Parser → Validator → Planner → Executor.',
@@ -47,6 +54,13 @@ export const projects = [
     stack: ['Python', 'Pandas', 'OpenAI API', 'Excel / Google Sheets'],
     color: 'violet' as const,
     image: '/images/datapulse_image.png' as string,
+    links: [
+      {
+        label: { en: 'Open DataPulse', ru: 'Открыть DataPulse' },
+        href: 'https://datapulse-landing-iota.vercel.app/',
+        type: 'external' as const,
+      },
+    ],
     description: {
       en: 'AI analytics product for e-commerce and retail with paying customers. Turns raw Excel and Google Sheets data into decision-ready AI reports with executive summaries, anomalies, risks, demand patterns, and SKU-level insights.',
       ru: 'AI-продукт аналитики для e-commerce и ритейла с платящими клиентами. Превращает сырые данные из Excel и Google Sheets в готовые AI-отчеты с executive summary, аномалиями, рисками, паттернами спроса и SKU-level insights.',

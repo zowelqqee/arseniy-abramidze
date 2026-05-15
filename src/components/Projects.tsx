@@ -79,6 +79,7 @@ function ImageSlot({ src, color, name }: { src: string; color: Color; name: stri
 function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: string }; lang: 'en' | 'ru' }) {
   const c = colorMap[p.color]
   const highlights = 'highlights' in p ? p.highlights?.[lang] : undefined
+  const links = 'links' in p ? p.links : undefined
 
   return (
     <div className={`flex flex-col rounded-xl border bg-white overflow-hidden transition-colors ${c.border}`}>
@@ -116,6 +117,7 @@ function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: str
             </span>
           ))}
         </div>
+        <ProjectLinks links={links} lang={lang} color={p.color} />
       </div>
     </div>
   )
@@ -124,6 +126,7 @@ function FeaturedCard({ p, lang }: { p: (typeof projects)[number] & { image: str
 function CompactCard({ p, lang }: { p: (typeof projects)[number]; lang: 'en' | 'ru' }) {
   const c = colorMap[p.color]
   const highlights = 'highlights' in p ? p.highlights?.[lang] : undefined
+  const links = 'links' in p ? p.links : undefined
 
   return (
     <div className={`flex flex-col p-6 rounded-xl border bg-white transition-colors ${c.border}`}>
@@ -157,7 +160,61 @@ function CompactCard({ p, lang }: { p: (typeof projects)[number]; lang: 'en' | '
           </span>
         ))}
       </div>
+      <ProjectLinks links={links} lang={lang} color={p.color} />
     </div>
+  )
+}
+
+function ProjectLinks({
+  links,
+  lang,
+  color,
+}: {
+  links?: readonly {
+    label: { en: string; ru: string }
+    href: string
+    type: 'external' | 'video'
+  }[]
+  lang: 'en' | 'ru'
+  color: Color
+}) {
+  if (!links?.length) return null
+
+  const c = colorMap[color]
+
+  return (
+    <div className="mt-5 flex flex-wrap gap-2">
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${c.tag}`}
+        >
+          {link.type === 'video' ? <PlayIcon /> : <ExternalLinkIcon />}
+          {t(link.label, lang)}
+        </a>
+      ))}
+    </div>
+  )
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18v4.5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M18 6l-7 7" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 13.5V18H6V9h4.5" />
+    </svg>
+  )
+}
+
+function PlayIcon() {
+  return (
+    <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M8 5.14v13.72a1 1 0 0 0 1.5.87l11.88-6.86a1 1 0 0 0 0-1.74L9.5 4.27A1 1 0 0 0 8 5.14Z" />
+    </svg>
   )
 }
 
